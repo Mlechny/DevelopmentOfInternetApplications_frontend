@@ -18,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="languages" />} />
         <Route path="/languages" element={<AllLanguages />} />
-        <Route path="/languages/:languages_id" element={<LanguageInfo />} />
+        <Route path="/languages/:language_id" element={<LanguageInfo />} />
         <Route path="/forms" element={<AllForms />} />
       </Routes>
       </div>
