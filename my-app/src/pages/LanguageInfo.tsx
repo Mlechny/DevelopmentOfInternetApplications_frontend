@@ -41,7 +41,7 @@ const LanguageInfo: FC = () => {
                  language ? (
                     <BigRCard {...language} />
                  ) : (
-                     <h3 className='text-center'>Такого получателя не существует</h3>
+                     <h3 className='text-center'>Такого языка программирования не существует</h3>
                  )
              ) : (
                 <LoadAnimation />
