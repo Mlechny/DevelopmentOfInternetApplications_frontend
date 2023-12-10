@@ -60,8 +60,7 @@ const AllLanguages = () => {
                 .catch((error) => {
                     console.error("Error fetching data:", error);
                 });
-        }, []);
-    return (
+        }, []);    return (
         <>
             <Search  setLanguages={setLanguages} />
             <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 px-1'>

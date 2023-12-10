@@ -9,8 +9,6 @@ import NavigationBar from './components/NavBar';
 
 
 function App() {
-  
-  
   return (
     <>
       <div className='container-xl px-2 px-sm-3'>

@@ -13,7 +13,7 @@ export async function getAllLanguages(filter?: string): Promise<Response> {
     }
     return fetch(url)
         .then(response => {
-            if (response.status >= 500 || response.headers.get("Server") == "GitHub.com") {
+            if (response.status >= 500) {
                 return fromMock(filter)
             }
             return response.json() as Promise<Response>
