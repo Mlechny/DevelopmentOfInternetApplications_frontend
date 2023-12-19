@@ -28,7 +28,7 @@ export const BigRCard: FC<ILanguageProps> = ({ name, subject, task, description,
     return (
       <div className="mx-auto shadow w-50 p-3 text-center text-md-start">
         <div className="card-body d-flex flex-column justify-content-start">
-          <img src={`http://${image_url}`} className="mx-auto img-fluid" alt="Card image" />
+          <CardImage url={`http://${image_url}`} className="mx-auto img-fluid"/>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Card.Title>{name}</Card.Title>
