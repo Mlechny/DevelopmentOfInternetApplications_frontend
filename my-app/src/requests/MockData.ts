@@ -7,7 +7,7 @@ export let languages = new Map<string, ILanguageProps>([
       "name": "Python",
       "subject": "Парадигмы и конструкции языков программирования",
       "task": "Лабораторная работа 2",
-      "image_url": "localhost:9000/images/Python.jpg",
+      "image_url": "https://onlinedegrees.sandiego.edu/wp-content/uploads/2023/05/6-careers-you-can-get-with-python.jpg",
       "description": "На шахматной доске 8 х 8 стоит ферзь. Отметьте положение ферзя на доске и все клетки, которые бьет ферзь. Клетку, где стоит ферзь, отметьте буквой Q, клетки, которые бьет ферзь, отметьте звездочками *, остальные клетки заполните точками. Шахматный ферзь может ходить по вертикали, горизонтали и по диагоналям.",
   
     }
@@ -17,7 +17,7 @@ export let languages = new Map<string, ILanguageProps>([
       "name": "C++",
       "subject": "Основы программирования",
       "task": "Лабораторная работа 3",
-      "image_url": "localhost:9000/images/C++.jpg",
+      "image_url": "https://www.simplilearn.com/ice9/free_resources_article_thumb/C%2B%2B_Basics_Example15.PNG",
       "description": "Описать класс призма: объём, высота, количество граней, длинна сторон, площадь основания. Реализовать get- и set-методы для работы с элемент-данными класса. Организовать выбор (меню) входные и выходные данные. Защитить элемент-данные призмы от внешних кодов.",
     }
     ],
@@ -26,7 +26,7 @@ export let languages = new Map<string, ILanguageProps>([
       "name": "JavaScript",
       "subject": "Программирование сетевых приложений",
       "task": "ДЗ",
-      "image_url": "localhost:9000/images/JavaScript.jpg",
+      "image_url": "https://code.visualstudio.com/assets/docs/languages/javascript/overview.png",
       "description": "Напишите функцию merge, которая будет принимать на вход несколько объектов (любое количество), и возвращать единственный объект, содержащий все поля из всех объектов. Если одно и то же поле было в нескольких объектах, необходимо оставить значение, которое встретилось раньше.",
     }
     ],
@@ -35,7 +35,7 @@ export let languages = new Map<string, ILanguageProps>([
       "name": "Golang",
       "subject": "Разработка интернет-приложений",
       "task": "Лабораторная работа 1",
-      "image_url": "localhost:9000/images/Golang.jpg",
+      "image_url": "https://er10.kz/wp-content/uploads/2022/08/Golang-1024x576.png",
       "description": "Создание базового интерфейса, состоящего из двух страниц. Первая для просмотра списка услуг (отели, товары, рейсы и тд) в виде карточек с наименованием, ценой и картинкой. При клике по карточке происходит переход на вторую страницу с подробной информацией об услуге (даты, описание и тд).",
     }
     ]
