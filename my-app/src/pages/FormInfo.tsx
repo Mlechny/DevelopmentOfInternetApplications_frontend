@@ -15,6 +15,7 @@ import Breadcrumbs from '../components/BreadCrumbs';
 
 const FormInfo = () => {
     let { form_id } = useParams()
+    console.log(typeof form_id, form_id);
     const [form, setForm] = useState<IForm | null>(null)
     const [content, setContent] = useState<ILanguage[] | null>([])
     const [loaded, setLoaded] = useState(false)
@@ -111,8 +112,6 @@ const FormInfo = () => {
                 console.error("Error fetching data:", error);
             });
     }
-
-    console.log(form)
 
     return (
         <LoadAnimation loaded={loaded}>
