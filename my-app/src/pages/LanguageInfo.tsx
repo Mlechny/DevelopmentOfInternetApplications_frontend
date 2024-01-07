@@ -1,54 +1,53 @@
 import { FC, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { BigRCard, ILanguageProps } from '../components/LanguageCard';
+import { useLocation, useParams } from 'react-router-dom';
+import { BigCCard } from '../components/LanguageCard';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import LoadAnimation from '../components/LoadAnimation';
-import { getLanguage } from '../requests/GetLanguage'
-
+import { getLanguage } from '../api'
+import { ILanguage } from '../models';
+import { AppDispatch } from "../store";
+import { useDispatch } from "react-redux";
+import { addToHistory } from "../store/historySlice"
+import Breadcrumbs from '../components/BreadCrumbs';
 
 const LanguageInfo: FC = () => {
     let { language_id } = useParams()
-    const [language, setLanguage] = useState<ILanguageProps>()
+    const [language, setLanguage] = useState<ILanguage | undefined>(undefined)
     const [loaded, setLoaded] = useState<boolean>(false)
+    const dispatch = useDispatch<AppDispatch>();
+    const location = useLocation().pathname;
+
+    console.log()
 
     useEffect(() => {
         getLanguage(language_id)
             .then(data => {
-                setLanguage(data)
-                setLoaded(true)
+                setLanguage(data);
+                dispatch(addToHistory({ path: location, name: data ? data.name : "неизвестно" }));
+                setLoaded(true);
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
-    }, []);
+        }, [dispatch]);
 
-    return (
-        <>
-        <Navbar>
-                <Nav>
-                <Link to="/languages" className="nav-link p-0 text-dark" data-bs-theme="dark">
-                    Языки программирования
-                </Link>
-                <Nav.Item className='mx-1'>{">"}</Nav.Item>
-                <Nav.Item className="nav-link p-0 text-dark">
-                    {`${language ? language.name : 'неизвестно'}`}
-                </Nav.Item>
-                </Nav>
-            </Navbar>
-            {loaded ? (
-                 language ? (
-                    <BigRCard {...language} />
-                 ) : (
-                     <h3 className='text-center'>Такого языка программирования не существует</h3>
-                 )
-             ) : (
-                <LoadAnimation />
-            )
-            }
-        </>
-    )
+        return (
+            <LoadAnimation loaded={loaded}>
+                {language ? (
+                    <>
+                        <Navbar>
+                            <Nav>
+                                <Breadcrumbs />
+                            </Nav>
+                        </Navbar>
+                        <BigCCard {...language} />
+                    </>
+                ) : (
+                    <h3 className='text-center'>Такого языка программирования не существует</h3>
+                )}
+            </LoadAnimation>
+        )
 }
 
-export { LanguageInfo }
+export default LanguageInfo 

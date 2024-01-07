@@ -10,6 +10,6 @@ export default defineConfig({
     }
   },
 
-  base: "/DevelopmentOfInternetApplications_frontend/",
+  base: "/",
   plugins: [react()]
 })
