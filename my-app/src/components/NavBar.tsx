@@ -8,8 +8,11 @@ import { axiosAPI } from '../api';
 import { AppDispatch, RootState } from "../store";
 import { resetLogin, resetRole } from "../store/userSlice";
 
+import { MODERATOR } from "./AuthCheck";
+
 function NavigationBar() {
     const userLogin = useSelector((state: RootState) => state.user.login);
+    const userRole = useSelector((state: RootState) => state.user.role);
     const dispatch = useDispatch<AppDispatch>();
 
     const logout = () => {
@@ -36,10 +39,11 @@ function NavigationBar() {
                     <Nav className="me-auto flex-grow-1">
                         <Link to="/languages" className="nav-link">Языки программирования</Link>
                         <Link to="/forms" className="nav-link">Формы</Link>
+                        {userRole === MODERATOR && <Link to="/languages-edit" className="nav-link text-nowrap">Управление языками программирования</Link>}
                         <Navbar.Collapse className="justify-content-end">
                             {userLogin ? (
                                 <>
-                                    <Navbar.Text className="px-2">
+                                    <Navbar.Text className="px-sm-2">
                                         {userLogin}
                                     </Navbar.Text>
                                     <Navbar.Text className="d-none d-sm-block">|</Navbar.Text>

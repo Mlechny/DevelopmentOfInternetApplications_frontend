@@ -5,18 +5,19 @@ import { Card, Row, Col, Navbar, InputGroup, Form, Button, ButtonGroup } from 'r
 
 import { axiosAPI } from "../api";
 import { getForm } from '../api/Forms';
-import { AppDispatch } from "../store";
 import { IForm, ILanguage } from "../models";
-import { addToHistory } from "../store/historySlice";
-import LoadAnimation from '../components/LoadAnimation';
-import { SmallCCard } from '../components/LanguageCard';
-import Breadcrumbs from '../components/BreadCrumbs';
 
+import { AppDispatch } from "../store";
+import { addToHistory } from "../store/historySlice";
+
+import LoadAnimation from '../components/LoadAnimation';
+import LanguageCard from '../components/LanguageCard';
+import Breadcrumbs from '../components/BreadCrumbs';
 
 const FormInfo = () => {
     let { form_id } = useParams()
     const [form, setForm] = useState<IForm | null>(null)
-    const [content, setContent] = useState<ILanguage[] | null>([])
+    const [composition, setComposition] = useState<ILanguage[] | null>([])
     const [loaded, setLoaded] = useState(false)
     const dispatch = useDispatch<AppDispatch>();
     const location = useLocation().pathname;
@@ -30,11 +31,11 @@ const FormInfo = () => {
             .then(data => {
                 if (data === null) {
                     setForm(null)
-                    setContent([])
+                    setComposition([])
                 } else {
                     setForm(data.form);
                     setComments(data.form.comments ? data.form.comments : '')
-                    setContent(data.languages);
+                    setComposition(data.languages);
 
                 }
                 setLoaded(true)
@@ -43,7 +44,6 @@ const FormInfo = () => {
                 console.error("Error fetching data:", error);
                 setLoaded(true)
             });
-        setLoaded(true)
     }
 
     const update = () => {
@@ -51,8 +51,8 @@ const FormInfo = () => {
         if (!accessToken) {
             return
         }
-        axiosAPI.put(`/form`,
-            { notification_type: comments },
+        axiosAPI.put(`/forms`,
+            { transport: comments },
             {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
@@ -69,7 +69,6 @@ const FormInfo = () => {
     useEffect(() => {
         getData()
         dispatch(addToHistory({ path: location, name: "Форма" }))
-
     }, [dispatch]);
 
     const delFromForm = (id: string) => () => {
@@ -98,7 +97,7 @@ const FormInfo = () => {
             });
     }
 
-    const deleteN = () => {
+    const deleteF = () => {
         const accessToken = localStorage.getItem('access_token');
         if (!accessToken) {
             return
@@ -129,7 +128,7 @@ const FormInfo = () => {
                                     <Form.Control readOnly value={form.status} />
                                 </InputGroup>
                                 <InputGroup className='mb-1'>
-                                <InputGroup.Text className='t-input-group-text'>Создана</InputGroup.Text>
+                                    <InputGroup.Text className='t-input-group-text'>Создана</InputGroup.Text>
                                     <Form.Control readOnly value={form.creation_date} />
                                 </InputGroup>
                                 <InputGroup className='mb-1'>
@@ -141,7 +140,7 @@ const FormInfo = () => {
                                     <Form.Control readOnly value={form.completion_date ? form.completion_date : ''} />
                                 </InputGroup>}
                                 <InputGroup className='mb-1'>
-                                    <InputGroup.Text className='t-input-group-text'>Комментарии</InputGroup.Text>
+                                    <InputGroup.Text className='t-input-group-text'>Коммментарии</InputGroup.Text>
                                     <Form.Control
                                         readOnly={!edit}
                                         value={comments}
@@ -165,15 +164,15 @@ const FormInfo = () => {
                                     </InputGroup>}
                                 {form.status == 'черновик' &&
                                     <ButtonGroup className='flex-grow-1 w-100'>
-                                        <Button variant='primary' onClick={confirm}>Сформировать</Button>
-                                        <Button variant='danger' onClick={deleteN}>Удалить</Button>
+                                        <Button variant='success' onClick={confirm}>Сформировать</Button>
+                                        <Button variant='danger' onClick={deleteF}>Удалить</Button>
                                     </ButtonGroup>}
                             </Card.Body>
                         </Card>
-                        {content && <Row className='row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 px-1 mt-2'>
-                            {content.map((language) => (
+                        {composition && <Row className='row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 px-1 mt-2'>
+                            {composition.map((language) => (
                                 <div className='d-flex p-2 justify-content-center' key={language.uuid}>
-                                    <SmallCCard  {...language}>
+                                    <LanguageCard  {...language}>
                                         {form.status == 'черновик' &&
                                             <Button
                                                 variant='outline-danger'
@@ -181,7 +180,7 @@ const FormInfo = () => {
                                                 onClick={delFromForm(language.uuid)}>
                                                 Удалить
                                             </Button>}
-                                    </SmallCCard>
+                                    </LanguageCard>
                                 </div>
                             ))}
                         </Row>}

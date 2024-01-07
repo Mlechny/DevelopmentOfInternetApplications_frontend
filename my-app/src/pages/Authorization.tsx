@@ -1,5 +1,5 @@
 import { FC, useState, ChangeEvent, FormEvent } from 'react';
-import { Form, Button, Container, Card } from 'react-bootstrap';
+import { Form, Button, Container} from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { axiosAPI } from '../api'
@@ -51,8 +51,8 @@ const Authorization: FC = () => {
         authorize(login, password)
         .then(() => navigate('/'))
     };
-    return (
-        <Card className='mx-auto shadow w-50 p-3 text-center text-md-start' border="primary">
+
+   return (
         <Container fluid="sm" className='d-flex flex-column flex-grow-1 align-items-center justify-content-center'>
             <Form onSubmit={handleRegistration} className='d-flex flex-column align-items-center'>
                 <h2>Вход</h2>
@@ -93,7 +93,6 @@ const Authorization: FC = () => {
                 </Link>
             </Form>
         </Container>
-        </Card>
     );
 };
 

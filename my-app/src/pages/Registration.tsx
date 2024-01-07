@@ -1,5 +1,5 @@
 import { FC, useState, ChangeEvent, FormEvent } from 'react';
-import { Form, Button, Container, Card } from 'react-bootstrap';
+import { Form, Button, Container} from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { axiosAPI } from '../api'
@@ -10,8 +10,6 @@ const Registration: FC = () => {
     const [password, setPassword] = useState<string>('');
 
     const navigate = useNavigate()
-
-    // TODO: Error handling? expires_in in redux
 
     const handleRegistration = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -25,7 +23,6 @@ const Registration: FC = () => {
     };
 
     return (
-        <Card className='mx-auto shadow w-50 p-3 text-center text-md-start' border="primary">
         <Container fluid="sm" className='d-flex flex-column flex-grow-1 align-items-center justify-content-center'>
             <Form onSubmit={handleRegistration} className='d-flex flex-column align-items-center'>
                 <h2>Регистрация</h2>
@@ -66,7 +63,6 @@ const Registration: FC = () => {
                 </Link>
             </Form>
         </Container>
-        </Card>
     );
 };
 

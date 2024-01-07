@@ -52,7 +52,7 @@ const LanguageInfo: FC = () => {
                                         <Card.Title>{language.name}</Card.Title>
                                         <Card.Text>Предмет: {language.subject}</Card.Text>
                                         <Card.Text>Задание: {language.task}</Card.Text>
-                                        <Card.Text>Описание задания: {language.description} мм</Card.Text>
+                                        <Card.Text>Описание задания: {language.description}</Card.Text>
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>

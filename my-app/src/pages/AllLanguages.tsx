@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { SmallCCard } from '../components/LanguageCard';
-import LoadAnimation from '../components/LoadAnimation';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -8,10 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, Link } from 'react-router-dom';
 
 import { getAllLanguages, axiosAPI } from '../api'
+import { ILanguage } from '../models'
+
 import { AppDispatch, RootState } from "../store";
 import { setName } from "../store/searchSlice"
 import { clearHistory, addToHistory } from "../store/historySlice"
-import { ILanguage } from '../models'
+
+import LanguageCard from '../components/LanguageCard';
+import LoadAnimation from '../components/LoadAnimation';
 
 const AllLanguages = () => {
     const searchText = useSelector((state: RootState) => state.search.name);
@@ -33,6 +35,7 @@ const AllLanguages = () => {
 
                 const handleSearch = (event: React.FormEvent<any>) => {
                     event.preventDefault();
+                    setLanguages([]);
                     getLanguages();
                 }
             
@@ -64,7 +67,7 @@ const AllLanguages = () => {
                         name="text"
                         placeholder="Поиск"
                         className="form-control-sm flex-grow-1 shadow"
-                        data-bs-theme="primary"
+                        data-bs-theme="dark"
                         value={searchText}
                         onChange={(e) => dispatch(setName(e.target.value))}
                     />
@@ -78,10 +81,10 @@ const AllLanguages = () => {
                 </Form>
             </Navbar>
             <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 px-1'>
-            <LoadAnimation loaded={languages.length > 0}>
+                <LoadAnimation loaded={languages.length > 0}>
                     {languages.map((language) => (
-                    <div className='d-flex py-1 p-2 justify-content-center' key={language.uuid}>
-                        <SmallCCard  {...language}>
+                        <div className='d-flex p-2 justify-content-center' key={language.uuid}>
+                            <LanguageCard  {...language}>
                                 {role != 0 &&
                                     <Button
                                         variant='outline-primary'
@@ -90,15 +93,15 @@ const AllLanguages = () => {
                                         Добавить в корзину
                                     </Button>
                                 }
-                            </SmallCCard>
-                    </div>
-                ))}
+                            </LanguageCard>
+                        </div>
+                    ))}
                 </LoadAnimation>
-        </div>
+            </div>
         {!!role && <Link to={`/forms/${draft}`}>
                 <Button
                     style={{ position: 'fixed', bottom: '16px', left: '16px', zIndex: '1000' }}
-                    className="btn btn-primary"
+                    className="btn btn-primary rounded-pill"
                     disabled={!draft}>
                     Корзина
                 </Button>
