@@ -15,12 +15,11 @@ import Breadcrumbs from '../components/BreadCrumbs';
 
 const LanguageInfo: FC = () => {
     let { language_id } = useParams()
+    console.log(language_id)
     const [language, setLanguage] = useState<ILanguage | undefined>(undefined)
     const [loaded, setLoaded] = useState<boolean>(false)
     const dispatch = useDispatch<AppDispatch>();
     const location = useLocation().pathname;
-
-    console.log()
 
     useEffect(() => {
         getLanguage(language_id)
