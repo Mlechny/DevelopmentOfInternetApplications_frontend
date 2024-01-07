@@ -61,7 +61,7 @@ const AllLanguages = () => {
              <Navbar>
                 <Form className="d-flex flex-row flex-grow-1 gap-2" onSubmit={handleSearch}>
                     <Form.Control
-                        type="text"
+                        name="text"
                         placeholder="Поиск"
                         className="form-control-sm flex-grow-1 shadow"
                         data-bs-theme="primary"

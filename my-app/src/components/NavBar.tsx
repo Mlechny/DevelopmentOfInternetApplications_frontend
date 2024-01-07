@@ -34,8 +34,8 @@ function NavigationBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto flex-grow-1">
-                        <Link to="/containers" className="nav-link">Контейнеры</Link>
-                        <Link to="/transportations" className="nav-link">Перевозки</Link>
+                        <Link to="/languages" className="nav-link">Языки программирования</Link>
+                        <Link to="/forms" className="nav-link">Формы</Link>
                         <Navbar.Collapse className="justify-content-end">
                             {userLogin ? (
                                 <>

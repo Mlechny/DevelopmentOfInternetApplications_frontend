@@ -2,7 +2,7 @@ import { languages, draft_form } from './MockData';
 import { ILanguage } from '../models';
 import axios, { AxiosRequestConfig } from 'axios';
 
-const ip = '127.0.0.1'
+const ip = 'localhost'
 const port = '3000'
 export const imagePlaceholder = `${import.meta.env.BASE_URL}placeholder.jpg`
 
@@ -17,7 +17,7 @@ export type Response = {
 export async function getAllLanguages(filter?: string): Promise<Response> {
     let url = 'languages';
     if (filter !== undefined) {
-        url += `?type=${filter}`;
+        url += `?name=${filter}`;
     }
     const headers: AxiosRequestConfig['headers'] = {};
     let accessToken = localStorage.getItem('access_token');
