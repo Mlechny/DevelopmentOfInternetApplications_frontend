@@ -7,7 +7,7 @@ import { getForms } from '../api/Forms';
 import { IForm } from "../models";
 
 import { AppDispatch, RootState } from "../store";
-import { setStatus, setDateStart, setDateEnd } from "../store/searchSlice";
+import {setUser, setStatus, setDateStart, setDateEnd } from "../store/searchSlice";
 import { clearHistory, addToHistory } from "../store/historySlice";
 
 import LoadAnimation from '../components/LoadAnimation';
@@ -18,6 +18,7 @@ import { format } from 'date-fns';
 const AllForms = () => {
     const [forms, setForms] = useState<IForm[]>([])
     const statusFilter = useSelector((state: RootState) => state.search.status);
+    const userFilter = useSelector((state: RootState) => state.search.user);
     const startDate = useSelector((state: RootState) => state.search.formationDateStart);
     const endDate = useSelector((state: RootState) => state.search.formationDateEnd);
     const role = useSelector((state: RootState) => state.user.role);
@@ -27,33 +28,35 @@ const AllForms = () => {
 
     const getData = () => {
         setLoaded(false)
-        getForms(statusFilter, startDate, endDate)
-            .then((data) => {
-                setForms(data)
-                console.log(data)
-                setLoaded(true);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-                setLoaded(true)
-            })
+        getForms(userFilter, statusFilter, startDate, endDate)
+        .then((data) => {
+            setLoaded(true);
+            setForms(data)
+        })
     };
 
     const handleSearch = (event: React.FormEvent<any>) => {
         event.preventDefault();
-        getData()
     }
 
     useEffect(() => {
         dispatch(clearHistory())
         dispatch(addToHistory({ path: location, name: "Формы" }))
         getData()
-    }, [dispatch]);
+        const intervalId = setInterval(() => {
+            getData();
+        }, 2000);
+        return () => clearInterval(intervalId);
+    }, [dispatch, userFilter, statusFilter, startDate, endDate]);
 
     return (
         <>
             <Navbar>
                 <Form className="d-flex flex-row align-items-stretch flex-grow-1 gap-2" onSubmit={handleSearch}>
+                {role == MODERATOR && <InputGroup size='sm' className='shadow-sm'>
+                        <InputGroup.Text>Пользователь</InputGroup.Text>
+                        <Form.Control value={userFilter} onChange={(e) => dispatch(setUser(e.target.value))} />
+                    </InputGroup>}
                     <InputGroup size='sm' className='shadow-sm'>
                         <InputGroup.Text >Статус</InputGroup.Text>
                         <Form.Select
@@ -62,7 +65,7 @@ const AllForms = () => {
                         >
                             <option value="">Любой</option>
                             <option value="сформирована">Сформирована</option>
-                            <option value="завершена">Подтверждена</option>
+                            <option value="завершена">Завершена</option>
                             <option value="отклонена">Отклонена</option>
                         </Form.Select>
                     </InputGroup>
@@ -89,6 +92,7 @@ const AllForms = () => {
                         <tr>
                             {role == MODERATOR && <th className='text-center'>Пользователь</th>}
                             <th className='text-center'>Статус</th>
+                            <th className='text-center'>Автотест</th>
                             <th className='text-center'>Дата создания</th>
                             <th className='text-center'>Дата формирования</th>
                             <th className='text-center'>Дата завершения</th>
@@ -101,6 +105,7 @@ const AllForms = () => {
                             <tr key={form.uuid}>
                                 {role == MODERATOR && <td className='text-center'>{form.student}</td>}
                                 <td className='text-center'>{form.status}</td>
+                                <td className='text-center'>{form.autotest}</td>
                                 <td className='text-center'>{form.creation_date}</td>
                                 <td className='text-center'>{form.formation_date}</td>
                                 <td className='text-center'>{form.completion_date}</td>

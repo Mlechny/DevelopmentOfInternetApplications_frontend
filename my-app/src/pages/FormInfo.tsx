@@ -26,7 +26,6 @@ const FormInfo = () => {
     const navigate = useNavigate()
 
     const getData = () => {
-        setLoaded(false)
         getForm(form_id)
             .then(data => {
                 if (data === null) {
@@ -38,12 +37,7 @@ const FormInfo = () => {
                     setComposition(data.languages);
 
                 }
-                setLoaded(true)
             })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-                setLoaded(true)
-            });
     }
 
     const update = () => {
@@ -67,8 +61,9 @@ const FormInfo = () => {
     }
 
     useEffect(() => {
-        getData()
         dispatch(addToHistory({ path: location, name: "Форма" }))
+        getData()
+        setLoaded(true)
     }, [dispatch]);
 
     const delFromForm = (id: string) => () => {
@@ -111,8 +106,6 @@ const FormInfo = () => {
             });
     }
 
-    console.log(form)
-
     return (
         <LoadAnimation loaded={loaded}>
             {form ? (
@@ -136,7 +129,7 @@ const FormInfo = () => {
                                     <Form.Control readOnly value={form.formation_date ? form.formation_date : ''} />
                                 </InputGroup>
                                 {(form.status == 'отклонена' || form.status == 'завершена') && <InputGroup className='mb-1'>
-                                    <InputGroup.Text className='t-input-group-text'>{form.status === 'отклонена' ? 'Отклонена' : 'Подтверждена'}</InputGroup.Text>
+                                    <InputGroup.Text className='t-input-group-text'>{form.status === 'отклонена' ? 'Отклонена' : 'Завершена'}</InputGroup.Text>
                                     <Form.Control readOnly value={form.completion_date ? form.completion_date : ''} />
                                 </InputGroup>}
                                 <InputGroup className='mb-1'>

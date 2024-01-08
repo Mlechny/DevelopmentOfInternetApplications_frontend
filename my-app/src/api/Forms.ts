@@ -21,6 +21,7 @@ function formatDate(date: Date | null): string {
 }
 
 export async function getForms(
+    user: string,
     status: string,
     startDate: string | null,
     endDate: string | null
@@ -46,7 +47,9 @@ export async function getForms(
             },
         })
         .then((response) =>
-            response.data.forms.map((tr: IForm) => ({
+        response.data.forms
+        .filter((tr: IForm) => tr.student.toLowerCase().includes(user.toLowerCase()))
+        .map((tr: IForm) => ({
                 ...tr,
                 creation_date: formatDate(new Date(tr.creation_date)),
                 formation_date: tr.formation_date
