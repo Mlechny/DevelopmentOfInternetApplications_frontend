@@ -15,7 +15,7 @@ export type Response = {
 }
 
 export async function getAllLanguages(filter?: string): Promise<Response> {
-    let url = 'languages';
+    let url = 'languages/';
     if (filter !== undefined) {
         url += `?name=${filter}`;
     }

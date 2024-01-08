@@ -30,14 +30,14 @@ export async function getForms(
         return [];
     }
     return axiosAPI
-        .get<FormsResponse>('/forms', {
+        .get<FormsResponse>('/forms/', {
             params: {
                 ...(status && { status: status }),
                 ...(startDate && {
-                    formation_date_start: format(new Date(startDate), 'yyyy-MM-dd HH:mm'),
+                    formation_date_start: format(new Date(startDate), 'yyyy-MM-dd HH:mm:ss'),
                 }),
                 ...(endDate && {
-                    formation_date_end: format(new Date(endDate), 'yyyy-MM-dd HH:mm'),
+                    formation_date_end: format(new Date(endDate), 'yyyy-MM-dd HH:mm:ss'),
                 }),
             },
             headers: {
