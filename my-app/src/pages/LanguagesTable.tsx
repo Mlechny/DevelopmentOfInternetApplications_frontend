@@ -38,7 +38,7 @@ const LanguageTable = () => {
 
     useEffect(() => {
         dispatch(clearHistory())
-        dispatch(addToHistory({ path: location, name: "Управление языками программировния" }))
+        dispatch(addToHistory({ path: location, name: "Управление языками программирования" }))
         getLanguages();
     }, [dispatch]);
 
