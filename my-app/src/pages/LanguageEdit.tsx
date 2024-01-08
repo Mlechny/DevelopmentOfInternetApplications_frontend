@@ -143,7 +143,7 @@ const LanguageInfo: FC = () => {
                                         <Form.Control id='task' value={language.task} readOnly={!edit} onChange={changeString} />
                                     </InputGroup>
                                     <InputGroup className='mb-1'>
-                                        <InputGroup.Text className='c-input-group-text'>Описание задания</InputGroup.Text>
+                                        <InputGroup.Text className='c-input-group-text'>Описание</InputGroup.Text>
                                         <Form.Control id='description' value={language.description} readOnly={!edit} onChange={changeString} />
                                     </InputGroup>
                                     <Form.Group className="mb-1">
