@@ -52,7 +52,7 @@ const FormInfo = () => {
             return
         }
         axiosAPI.put(`/forms`,
-            { transport: comments },
+            { comments: comments },
             {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,

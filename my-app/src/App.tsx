@@ -29,9 +29,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/languages" />} />
           <Route path="/languages" element={<AllLanguages />} />
-          <Route path="/languages/:languages_id" element={<LanguageInfo />} />
+          <Route path="/languages/:language_id" element={<LanguageInfo />} />
           <Route path="/languages-edit" element={<AuthCheck allowedRoles={[MODERATOR]}><LanguagesTable /></AuthCheck>} />
-          <Route path="/languages-edit/:languages_id" element={<AuthCheck allowedRoles={[MODERATOR]}><LanguageEdit /></AuthCheck>} />
+          <Route path="/languages-edit/:language_id" element={<AuthCheck allowedRoles={[MODERATOR]}><LanguageEdit /></AuthCheck>} />
 
           <Route path="/forms" element={<AuthCheck allowedRoles={[STUDENT, MODERATOR]}><AllForms /></AuthCheck>} />
           <Route path="/forms/:form_id" element={<AuthCheck allowedRoles={[STUDENT, MODERATOR]}><FormInfo /></AuthCheck>} />
