@@ -55,9 +55,7 @@ const LanguageInfo: FC = () => {
     }, [dispatch]);
 
     const changeString = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log("Field id:", e.target.id, "Value:", e.target.value);
         setLanguage(language ? { ...language, [e.target.id]: e.target.value } : undefined)
-        console.log("Updated language:", language);
     }
 
     const deleteLanguage = () => {
@@ -109,6 +107,11 @@ const LanguageInfo: FC = () => {
             .then((data) => setLanguage(data))
     }
 
+    const handleEditClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.stopPropagation();
+        setEdit(true);
+    };
+
     return (
         <LoadAnimation loaded={loaded}>
             {language ? (
@@ -130,15 +133,15 @@ const LanguageInfo: FC = () => {
                                     </InputGroup>
                                     <InputGroup className='mb-1'>
                                         <InputGroup.Text className='c-input-group-text'>Предмет</InputGroup.Text>
-                                        <Form.Control id='subject' value={language.subject} readOnly={!edit} onChange={changeString} />
+                                        <Form.Control id='subject' required type='text' value={language.subject} readOnly={!edit} onChange={changeString} />
                                     </InputGroup>
                                     <InputGroup className='mb-1'>
                                         <InputGroup.Text className='c-input-group-text'>Задание</InputGroup.Text>
-                                        <Form.Control id='task' value={language.task} readOnly={!edit} onChange={changeString} />
+                                        <Form.Control id='task' required type='text' value={language.task} readOnly={!edit} onChange={changeString} />
                                     </InputGroup>
                                     <InputGroup className='mb-1'>
                                         <InputGroup.Text className='c-input-group-text'>Описание</InputGroup.Text>
-                                        <Form.Control id='description' value={language.description} readOnly={!edit} onChange={changeString} />
+                                        <Form.Control id='description' required type='text' value={language.description} readOnly={!edit} onChange={changeString} />
                                     </InputGroup>
                                     <Form.Group className="mb-1">
                                             <Form.Label>Выберите изображение</Form.Label>
@@ -156,13 +159,10 @@ const LanguageInfo: FC = () => {
                                             {language_id != 'new' && <Button variant='danger' onClick={cancel}>Отменить</Button>}
                                         </ButtonGroup>
                                     ) : (
-                                        <ButtonGroup className='w-100'>
-                                            <Button
-                                                onClick={() => setEdit(true)}>
-                                                Изменить
-                                            </Button>
+                                        <>
+                                            <Button onClick={handleEditClick}>Изменить</Button>
                                             <Button variant='danger' onClick={deleteLanguage}>Удалить</Button>
-                                        </ButtonGroup>
+                                            </>
                                     )}
                             </Form>
                             </Col>
