@@ -82,33 +82,28 @@ const LanguageTable = () => {
                     <tbody>
                         {languages.map((language) => (
                             <tr key={language.uuid}>
-                                <td style={{ width: '15%' }} className='p-0'>
-                                    <CardImage url={language.image_url} />
-                                </td>
-                                <td className='text-center'>{language.name}</td>
-                                <td className='text-center'>{language.subject}</td>
-                                <td className='text-center align-middle'>
-                                    <table className='table m-0'>
-                                        <tr>
-                                            <Link
-                                                to={`/languages-edit/${language.uuid}`}
-                                                className='btn btn-sm btn-outline-secondary text-decoration-none w-100' >
-                                                Редактировать
-                                            </Link>
-                                        </tr>
-                                        <tr><td className='p-1'></td></tr>
-                                        <tr>
-                                            <Button
-                                                variant='outline-danger'
-                                                size='sm'
-                                                className='w-100'
-                                                onClick={deleteLanguage(language.uuid)}>
-                                                Удалить
-                                            </Button>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
+                            <td style={{ width: '15%' }} className='p-0'>
+                                <CardImage url={language.image_url} />
+                            </td>
+                            <td className='text-center'>{language.name}</td>
+                            <td className='text-center'>{language.subject}</td>
+                            <td className='text-center align-middle'>
+                                <div className='d-flex flex-column align-items-center'>
+                                    <Link
+                                        to={`/languages-edit/${language.uuid}`}
+                                        className='btn btn-sm btn-outline-secondary text-decoration-none w-100 mb-2'>
+                                        Редактировать
+                                    </Link>
+                                    <Button
+                                        variant='outline-danger'
+                                        size='sm'
+                                        className='w-100'
+                                        onClick={deleteLanguage(language.uuid)}>
+                                        Удалить
+                                    </Button>
+                                </div>
+                            </td>
+                        </tr>
                         ))}
                     </tbody>
                 </Table>
