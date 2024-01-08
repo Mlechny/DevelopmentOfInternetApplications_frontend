@@ -31,7 +31,7 @@ export async function getForms(
         return [];
     }
     return axiosAPI
-        .get<FormsResponse>('/forms', {
+        .get<FormsResponse>('/forms/', {
             params: {
                 ...(status && { status: status }),
                 ...(startDate && {
