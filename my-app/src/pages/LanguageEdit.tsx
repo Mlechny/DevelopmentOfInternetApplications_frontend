@@ -25,6 +25,7 @@ const LanguageInfo: FC = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        if (!edit) {
         const getData = async () => {
             setLoaded(false);
             let data: ILanguage | undefined;
@@ -52,7 +53,7 @@ const LanguageInfo: FC = () => {
             }
         }
         getData();
-    }, [dispatch]);
+    }}, [dispatch]);
 
     const changeString = (e: ChangeEvent<HTMLInputElement>) => {
         setLanguage(language ? { ...language, [e.target.id]: e.target.value } : undefined)
