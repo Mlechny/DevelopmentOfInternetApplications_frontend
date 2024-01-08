@@ -37,9 +37,12 @@ const searchSlice = createSlice({
         setDateEnd: (state, { payload }) => {
             state.formationDateEnd = payload
         },
+        reset: (state) => {
+            state = initialState
+        }
     },
 });
 
 export default searchSlice.reducer;
 
-export const { setName, setUser, setStatus, setDateStart, setDateEnd } = searchSlice.actions;
+export const { reset, setName, setUser, setStatus, setDateStart, setDateEnd } = searchSlice.actions;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import { Card, Row, Col, Navbar, InputGroup, Form, Button, ButtonGroup } from 'react-bootstrap';
 
@@ -7,8 +7,10 @@ import { axiosAPI } from "../api";
 import { getForm } from '../api/Forms';
 import { IForm, ILanguage } from "../models";
 
-import { AppDispatch } from "../store";
+import { AppDispatch, RootState } from "../store";
 import { addToHistory } from "../store/historySlice";
+
+import { MODERATOR } from '../components/AuthCheck';
 
 import LoadAnimation from '../components/LoadAnimation';
 import LanguageCard from '../components/LanguageCard';
@@ -18,6 +20,7 @@ const FormInfo = () => {
     let { form_id } = useParams()
     const [form, setForm] = useState<IForm | null>(null)
     const [composition, setComposition] = useState<ILanguage[] | null>([])
+    const role = useSelector((state: RootState) => state.user.role);
     const [loaded, setLoaded] = useState(false)
     const dispatch = useDispatch<AppDispatch>();
     const location = useLocation().pathname;
@@ -106,6 +109,14 @@ const FormInfo = () => {
             });
     }
 
+    const moderator_confirm = (confirm: boolean) => () => {
+        const accessToken = localStorage.getItem('access_token');
+        axiosAPI.put(`/forms/${form?.uuid}/moderator_confirm`,
+            { confirm: confirm },
+            { headers: { 'Authorization': `Bearer ${accessToken}`, } })
+            .then(() => getData())
+    }
+
     return (
         <LoadAnimation loaded={loaded}>
             {form ? (
@@ -154,7 +165,14 @@ const FormInfo = () => {
                                     <InputGroup className='mb-1'>
                                         <InputGroup.Text className='t-input-group-text'>Автотест</InputGroup.Text>
                                         <Form.Control readOnly value={form.autotest ? form.autotest : ''} />
-                                    </InputGroup>}
+                                        </InputGroup>
+                                }
+                                {form.status == 'сформирована' && role == MODERATOR &&
+                                    <ButtonGroup className='flex-grow-1 w-100'>
+                                        <Button variant='success' onClick={moderator_confirm(true)}>Подтвердить</Button>
+                                        <Button variant='danger' onClick={moderator_confirm(false)}>Отменить</Button>
+                                    </ButtonGroup>
+                                }
                                 {form.status == 'черновик' &&
                                     <ButtonGroup className='flex-grow-1 w-100'>
                                         <Button variant='success' onClick={confirm}>Сформировать</Button>
