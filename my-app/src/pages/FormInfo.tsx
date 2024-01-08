@@ -52,8 +52,8 @@ const FormInfo = () => {
         if (!accessToken) {
             return
         }
-        axiosAPI.put(`/form`,
-            { notification_type: comments },
+        axiosAPI.put(`/forms`,
+            { comments: comments },
             {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
