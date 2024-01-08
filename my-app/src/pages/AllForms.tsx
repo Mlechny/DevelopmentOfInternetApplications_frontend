@@ -66,12 +66,12 @@ const AllForms = () => {
                         </Form.Select>
                     </InputGroup>
                     <DateTimePicker
-                     selected={startDate ? new Date(startDate) : null}
-                     onChange={(date: Date) => dispatch(setDateStart(date ? date.toISOString() : null))}
+                      selected={startDate ? new Date(startDate) : null}
+                      onChange={(date: Date) => dispatch(setDateStart(date ? date.toISOString() : null))}
                     />
                     <DateTimePicker
-                     selected={endDate ? new Date(endDate) : null}
-                     onChange={(date: Date) => dispatch(setDateEnd(date ? date.toISOString() : null))}
+                      selected={endDate ? new Date(endDate) : null}
+                      onChange={(date: Date) => dispatch(setDateEnd(date ? date.toISOString() : null))}
                     />
                     <Button
                         variant="primary"
