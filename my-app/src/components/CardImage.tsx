@@ -11,23 +11,23 @@ interface CardImageProps {
 const CardImage = ({ url, className, ...props }: CardImageProps) => {
     const [src, setSrc] = useState(imagePlaceholder);
 
-
     useEffect(() => {
         if (!url) {
-            return
+            return;
         }
-        axios.get(url, { responseType: 'blob' })
+
+        // Добавление протокола http://, если отсутствует
+        const fullUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `http://${url}`;
+
+        axios.get(fullUrl, { responseType: 'blob' })
             .then(response => {
-                if (response.status >= 500 || response.headers.server === 'GitHub.com') {
-                    throw new Error(`Can't load image from ${url}`);
-                }
                 setSrc(URL.createObjectURL(response.data));
             })
             .catch(error => {
-                console.error(error.message);
+                console.error(`Error loading image from ${fullUrl}:`, error.message);
             });
 
-    }, []);
+    }, [url]); // Обновление при изменении url
 
     const handleError = () => {
         console.error(`Error loading image: ${url}`);
