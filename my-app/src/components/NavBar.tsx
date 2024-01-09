@@ -10,6 +10,7 @@ import { resetLogin, resetRole } from "../store/userSlice";
 import  {reset} from "../store/searchSlice";
 
 import { MODERATOR } from "./AuthCheck";
+import './NavigationBar.css';
 
 function NavigationBar() {
     const userLogin = useSelector((state: RootState) => state.user.login);
@@ -34,7 +35,7 @@ function NavigationBar() {
     }
 
     return (
-        <Navbar expand="sm" className='bg-dark' data-bs-theme="dark">
+        <Navbar expand="sm" className='custom-navbar'>
             <div className='container-xl px-2 px-sm-3'>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
