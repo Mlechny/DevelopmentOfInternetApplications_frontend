@@ -24,6 +24,7 @@ const userSlice = createSlice({
             state.role = payload
         },
         resetRole: (state) => {
+            state.login = null
             state.role = 0
         },
     },

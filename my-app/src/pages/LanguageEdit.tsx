@@ -1,5 +1,5 @@
 import { FC, useEffect, useState, ChangeEvent, useRef } from 'react';
-import { useLocation, useParams, useNavigate} from 'react-router-dom';
+import { useLocation, useParams} from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { Card, Row, Navbar, InputGroup, Form, Col, Button, ButtonGroup } from 'react-bootstrap';
 
@@ -22,10 +22,9 @@ const LanguageInfo: FC = () => {
     const [image, setImage] = useState<File | undefined>(undefined);
     const [edit, setEdit] = useState<boolean>(false);
     const inputFile = useRef<HTMLInputElement | null>(null);
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
 
     useEffect(() => {
-        if (!edit) {
         const getData = async () => {
             setLoaded(false);
             let data: ILanguage | undefined;
@@ -52,18 +51,19 @@ const LanguageInfo: FC = () => {
                 setLoaded(true);
             }
         }
+        setEdit(true)
         getData();
-    }}, [dispatch]);
+    }, [dispatch]);
 
     const changeString = (e: ChangeEvent<HTMLInputElement>) => {
         setLanguage(language ? { ...language, [e.target.id]: e.target.value } : undefined)
     }
 
-    const deleteLanguage = () => {
+    /*const deleteLanguage = () => {
         let accessToken = localStorage.getItem('access_token');
         axiosAPI.delete(`/languages/${language_id}`, { headers: { 'Authorization': `Bearer ${accessToken}`, } })
             .then(() => navigate('/languages-edit'))
-    }
+    }*/
 
     const save = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -108,10 +108,10 @@ const LanguageInfo: FC = () => {
             .then((data) => setLanguage(data))
     }
 
-    const handleEditClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    /*const handleEditClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.stopPropagation();
         setEdit(true);
-    };
+    };*/
 
     return (
         <LoadAnimation loaded={loaded}>
@@ -160,10 +160,7 @@ const LanguageInfo: FC = () => {
                                             {language_id != 'new' && <Button variant='danger' onClick={cancel}>Отменить</Button>}
                                         </ButtonGroup>
                                     ) : (
-                                        <>
-                                            <Button onClick={handleEditClick}>Изменить</Button>
-                                            <Button variant='danger' onClick={deleteLanguage}>Удалить</Button>
-                                            </>
+                                        <></>
                                     )}
                             </Form>
                             </Col>

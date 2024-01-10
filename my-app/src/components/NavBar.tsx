@@ -9,7 +9,7 @@ import { AppDispatch, RootState } from "../store";
 import { resetLogin, resetRole } from "../store/userSlice";
 import  {reset} from "../store/searchSlice";
 
-import { MODERATOR } from "./AuthCheck";
+import { STUDENT, MODERATOR } from "./AuthCheck";
 import './NavigationBar.css';
 
 function NavigationBar() {
@@ -41,8 +41,8 @@ function NavigationBar() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto flex-grow-1">
                         <Link to="/languages" className="nav-link">Языки программирования</Link>
-                        <Link to="/forms" className="nav-link">Формы</Link>
-                        {userRole === MODERATOR && <Link to="/languages-edit" className="nav-link text-nowrap">Управление языками программирования</Link>}
+                        {(userRole === MODERATOR || userRole === STUDENT) && <Link to="/forms" className="nav-link">Формы</Link>}
+                        {userRole === MODERATOR && <Link to="/languages-edit" className="nav-link text-nowrap">Таблица языков программирования</Link>}
                         <Navbar.Collapse className="justify-content-end">
                             {userLogin ? (
                                 <>
