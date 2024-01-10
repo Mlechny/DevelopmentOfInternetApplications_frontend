@@ -120,7 +120,7 @@ const LanguageInfo: FC = () => {
                     <Navbar>
                         <Breadcrumbs />
                     </Navbar>
-                    <Card className='shadow-lg mb-3'>
+                    <Card className='card shadow-lg mb-3'>
                         <Row className='m-0'>
                             <Col className='col-12 col-md-8 overflow-hidden p-0'>
                                 <CardImage url={language.image_url} />
@@ -156,8 +156,8 @@ const LanguageInfo: FC = () => {
                                 </Card.Body>
                                 {edit ? (
                                         <ButtonGroup className='w-100'>
-                                            <Button variant='success' type='submit'>Сохранить</Button>
-                                            {language_id != 'new' && <Button variant='danger' onClick={cancel}>Отменить</Button>}
+                                            <Button type='submit' className='gradient-button1'>Сохранить</Button>
+                                            {language_id != 'new' && <Button className='gradient-button' onClick={cancel}>Отменить</Button>}
                                         </ButtonGroup>
                                     ) : (
                                         <></>

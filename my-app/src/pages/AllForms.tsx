@@ -65,12 +65,13 @@ const AllForms = () => {
                 <Form className="d-flex flex-row align-items-stretch flex-grow-1 gap-2" onSubmit={handleSearch}>
                 {role == MODERATOR && <InputGroup size='sm' className='shadow-sm'>
                         <InputGroup.Text>Пользователь</InputGroup.Text>
-                        <Form.Control value={userFilter} onChange={(e) => dispatch(setUser(e.target.value))} />
+                        <Form.Control value={userFilter} className="form-control-sm flex-grow-1 custom-search-input" onChange={(e) => dispatch(setUser(e.target.value))} />
                     </InputGroup>}
                     <InputGroup size='sm' className='shadow-sm'>
                         <InputGroup.Text >Статус</InputGroup.Text>
                         <Form.Select
                             defaultValue={statusFilter}
+                            className="form-control-sm flex-grow-1 custom-search-input"
                             onChange={(status) => dispatch(setStatus(status.target.value))}                       
                         >
                             <option value="">Любой</option>
@@ -126,16 +127,16 @@ const AllForms = () => {
                                             <tr>
                                                 <td className='py-1 border-0' style={{ background: 'transparent' }}>
                                                     <Link to={`/forms/${form.uuid}`}
-                                                        className='btn btn-sm btn-outline-secondary text-decoration-none w-100' >
+                                                        className='gradient-button1 text-decoration-none w-100' >
                                                         Подробнее
                                                     </Link>
                                                 </td>
                                             </tr>
                                             {form.status == 'сформирована' && role == MODERATOR && <tr>
                                                 <td className='py-1 border-0' style={{ background: 'transparent' }}>
-                                                    <ButtonGroup className='flex-grow-1 w-100'>
-                                                        <Button variant='outline-success' size='sm' onClick={moderator_confirm(form.uuid, true)}>Подтвердить</Button>
-                                                        <Button variant='outline-danger' size='sm' onClick={moderator_confirm(form.uuid, false)}>Отменить</Button>
+                                                    <ButtonGroup className='btn'>
+                                                        <Button  size='sm' onClick={moderator_confirm(form.uuid, true)}>Подтвердить</Button>
+                                                        <Button  size='sm' onClick={moderator_confirm(form.uuid, false)}>Отменить</Button>
                                                     </ButtonGroup>
                                                 </td>
                                             </tr>}

@@ -33,7 +33,7 @@ const DateTimePicker: FC<DatePickerProps> = ({ selected, onChange }) => {
             isClearable
             dateFormat="MM.d.yyyy"
             customInput={<CustomInput />}
-            className="text-nowrap shadow-sm"
+            className="form-control-sm flex-grow-1 custom-search-input"
         />
     );
 }

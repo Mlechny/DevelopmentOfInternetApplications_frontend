@@ -10,7 +10,6 @@ import { resetLogin, resetRole } from "../store/userSlice";
 import  {reset} from "../store/searchSlice";
 
 import { STUDENT, MODERATOR } from "./AuthCheck";
-import './NavigationBar.css';
 
 function NavigationBar() {
     const userLogin = useSelector((state: RootState) => state.user.login);
@@ -49,10 +48,10 @@ function NavigationBar() {
                                     <Navbar.Text className="px-sm-2">
                                         {userLogin}
                                     </Navbar.Text>
-                                    <Navbar.Text className="d-none d-sm-block">|</Navbar.Text>
+                                    <Navbar.Text className="d-none d-sm-block" style={{ fontSize: 'larger', marginRight: '10px' }}>|</Navbar.Text>
                                     <Button
                                         variant="link"
-                                        className="nav-link"
+                                        className="nav-link stretched-btn no-hover"
                                         onClick={logout}>
                                         Выйти
                                     </Button>

@@ -18,8 +18,7 @@ function Breadcrumbs() {
                         <>
                             <Link
                                 to={page.path}
-                                className="nav-link p-0 text-dark"
-                                data-bs-theme="dark"
+                                className="nav-link p-0"
                                 onClick={() => dispatch(cutHistory(index))}
                             >
                                 {page.name}
@@ -27,7 +26,7 @@ function Breadcrumbs() {
                             <Nav.Item className='mx-1'>{">"}</Nav.Item>
                         </>
                     ) : (
-                        <Nav.Item className="nav-link p-0 text-dark">
+                        <Nav.Item className="nav-link p-0">
                             {page.name}
                         </Nav.Item>
                     )}

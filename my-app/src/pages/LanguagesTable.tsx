@@ -52,11 +52,10 @@ const LanguageTable = () => {
         <>
             <Navbar>
                 <Form className="d-flex flex-row flex-grow-1 gap-2" onSubmit={handleSearch}>
-                    <Form.Control
+                <Form.Control
                         name="text"
                         placeholder="Поиск"
-                        className="form-control-sm flex-grow-1 shadow"
-                        data-bs-theme="dark"
+                        className="form-control-sm flex-grow-1 custom-search-input"
                         value={searchText}
                         onChange={(e) => dispatch(setName(e.target.value))}
                     />
@@ -67,7 +66,7 @@ const LanguageTable = () => {
                         className="shadow-lg">
                         Поиск
                     </Button>
-                <Link to='new' className='btn btn-sm btn-success shadow ms-sm-2'>Создать</Link>
+                <Link to='new' className='btn shadow-lg sm custom-link-btn'>Создать</Link>
                 </Form>
             </Navbar>
             < LoadAnimation loaded={languages.length > 0}>
@@ -77,28 +76,27 @@ const LanguageTable = () => {
                             <th className='text-center'>Изображение</th>
                             <th className='text-center'>Название</th>
                             <th className='text-center'>Предмет</th>
-                            <th className=''></th>
+                            <th className='text-center'>Действия</th>
                         </tr>
                     </thead>
                     <tbody>
                         {languages.map((language) => (
-                            <tr key={language.uuid}>
+                            <tr key={language.uuid} >
                             <td style={{ width: '15%' }} className='p-0'>
                                 <CardImage url={language.image_url} />
                             </td>
-                            <td className='text-center'>{language.name}</td>
+                            <td className=' text-center'>{language.name}</td>
                             <td className='text-center'>{language.subject}</td>
                             <td className='text-center align-middle'>
                                 <div className='d-flex flex-column align-items-center'>
                                     <Link
                                         to={`/languages-edit/${language.uuid}`}
-                                        className='btn btn-sm btn-outline-secondary text-decoration-none w-100 mb-2'>
+                                        className='btn text-decoration-none w-100 mb-2'>
                                         Редактировать
                                     </Link>
                                     <Button
-                                        variant='outline-danger'
                                         size='sm'
-                                        className='w-100'
+                                        className='gradient-button w-100 mb-2'
                                         onClick={deleteLanguage(language.uuid)}>
                                         Удалить
                                     </Button>

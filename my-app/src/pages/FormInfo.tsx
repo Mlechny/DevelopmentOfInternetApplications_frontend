@@ -148,14 +148,14 @@ const FormInfo = () => {
                                         value={comments}
                                         onChange={(e) => setComments(e.target.value)}
                                     />
-                                    {edit && (
+                                    {form.status === 'черновик' && edit && (
                                 <ButtonGroup>
-                            <Button variant='success' onClick={update}>Сохранить</Button>
+                            <Button onClick={update}>Сохранить</Button>
                             <Button
-                                variant='danger'
+                                className='gradient-button'
                                 onClick={() => {
                                 setComments(form.comments ? form.comments : '');
-                                //setEdit(false);
+                                setEdit(false);
                              }}>
                             Отменить
                             </Button>
@@ -170,8 +170,8 @@ const FormInfo = () => {
                                 }
                                 {form.status == 'черновик' &&
                                     <ButtonGroup className='flex-grow-1 w-100'>
-                                        <Button variant='success' onClick={confirm}>Сформировать</Button>
-                                        <Button variant='danger' onClick={deleteF}>Удалить</Button>
+                                        <Button onClick={confirm}>Сформировать</Button>
+                                        <Button className='gradient-button' onClick={deleteF}>Удалить</Button>
                                     </ButtonGroup>}
                             </Card.Body>
                         </Card>
@@ -181,8 +181,7 @@ const FormInfo = () => {
                                     <LanguageCard  {...language}>
                                         {form.status == 'черновик' &&
                                             <Button
-                                                variant='outline-danger'
-                                                className='mt-0 rounded-bottom'
+                                                className='gradient-button mt-0 rounded-bottom'
                                                 onClick={delFromForm(language.uuid)}>
                                                 Удалить
                                             </Button>}

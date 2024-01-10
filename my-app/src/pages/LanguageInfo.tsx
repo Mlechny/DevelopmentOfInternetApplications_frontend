@@ -46,11 +46,11 @@ const LanguageInfo: FC = () => {
                             <div className='col-12 col-md-8 overflow-hidden'>
                                 <CardImage url={language.image_url} />
                             </div>
-                            <Card.Body className='col-12 col-md-4 ps-md-0'>
+                            <Card.Body className='col-10 col-md-4 ps-md-0'>
                                 <ListGroup variant="flush">
-                                    <ListGroup.Item>
-                                        <Card.Title>{language.name}</Card.Title>
-                                        <Card.Text>Предмет: {language.subject}</Card.Text>
+                                    <ListGroup.Item className="card">
+                                        <Card.Title className="bold-title">{language.name}</Card.Title>
+                                        <Card.Text className="lower-and-larger-text">Предмет: {language.subject}</Card.Text>
                                         <Card.Text>Задание: {language.task}</Card.Text>
                                         <Card.Text>Описание задания: {language.description}</Card.Text>
                                     </ListGroup.Item>
