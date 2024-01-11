@@ -54,7 +54,8 @@ const FormInfo = () => {
                     'Content-Type': 'application/json',
                 }
             })
-            .then(() => getData())
+            .then(() => {getData();
+                setEdit(false);})
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
