@@ -24,7 +24,7 @@ export const SmallCCard: FC<CardProps> = ({ children, uuid, name, subject, image
             <Card.Text>Предмет: {subject}</Card.Text>
         </Card.Body>
         <ButtonGroup vertical>
-            <Link to={`/languages/${uuid}`} className="btn btn-outline-primary">Подробнее</Link>
+            <Link to={`/languages/${uuid}`} className="btn gradient-button1">Подробнее</Link>
             <>{children}</>
         </ButtonGroup>
     </Card>

@@ -63,13 +63,11 @@ const AllLanguages = () => {
                     <Form.Control
                         name="text"
                         placeholder="Поиск"
-                        className="form-control-sm flex-grow-1 shadow"
-                        data-bs-theme="primary"
+                        className="form-control-sm flex-grow-1 custom-search-input"
                         value={searchText}
                         onChange={(e) => dispatch(setName(e.target.value))}
                     />
                     <Button
-                        variant="primary"
                         size="sm"
                         type="submit"
                         className="shadow-lg">
@@ -84,8 +82,7 @@ const AllLanguages = () => {
                         <SmallCCard  {...language}>
                                 {role != 0 &&
                                     <Button
-                                        variant='outline-primary'
-                                        className='mt-0 rounded-bottom'
+                                        className='gradient-button'
                                         onClick={addToForm(language.uuid)}>
                                         Добавить в корзину
                                     </Button>
@@ -97,8 +94,8 @@ const AllLanguages = () => {
         </div>
         {!!role && <Link to={`/forms/${draft}`}>
                 <Button
-                    style={{ position: 'fixed', bottom: '16px', left: '16px', zIndex: '1000' }}
-                    className="btn btn-primary"
+                    style={{ position: 'fixed', bottom: '16px', left: '16px', zIndex: '1000'}}
+                    className="custom-link-btn rounded-pill"
                     disabled={!draft}>
                     Корзина
                 </Button>

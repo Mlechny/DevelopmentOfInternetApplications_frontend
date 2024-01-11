@@ -55,42 +55,43 @@ const Authorization: FC = () => {
         <Card className='mx-auto shadow w-50 p-3 text-center text-md-start' border="primary">
         <Container fluid="sm" className='d-flex flex-column flex-grow-1 align-items-center justify-content-center'>
             <Form onSubmit={handleRegistration} className='d-flex flex-column align-items-center'>
-                <h2>Вход</h2>
+                <h2 className='mt-4 mb-4'>Вход</h2>
 
-                <Form.Group controlId="login" className='d-flex flex-column align-items-center mt-2'>
-                    <Form.Label>Логин</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Введите ваш логин"
-                        value={login}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin(e.target.value)}
-                    />
+                <Form.Group controlId="login" className='row mb-3 align-items-center'>
+                <Form.Label className='col-sm-3 col-form-label'>Логин:</Form.Label>
+                <div className='col-sm-9'>
+                <Form.Control
+                    type="text"
+                    placeholder="Введите ваш логин"
+                    value={login}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin(e.target.value)}
+                />
+                </div>
                 </Form.Group>
 
-                <Form.Group controlId="password" className='d-flex flex-column align-items-center mt-1'>
-                    <Form.Label>Пароль</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Введите ваш пароль"
-                        value={password}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                    />
+                <Form.Group controlId="password" className='row mb-3 align-items-center'>
+                <Form.Label className='col-sm-3 col-form-label'>Пароль:</Form.Label>
+                <div className='col-sm-9'>
+                <Form.Control
+                    type="password"
+                    placeholder="Введите ваш пароль"
+                    value={password}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                />
+                </div>
                 </Form.Group>
 
                 <Button
-                    variant="primary"
                     type="submit"
-                    className='mt-3 w-100'
+                    className='gradient-button1 mt-3 w-100'
                     disabled={!login || !password}
                 >
-                    Авторизироваться
+                    Авторизоваться
                 </Button>
 
-                <Link to={'/registration'}>
-                    <Button variant="link">
-                        Перейти к регистрации
-                    </Button>
-                </Link>
+                <div className="w-100 text-center mt-3">
+                <Link to={'/registration'} className="nav-link">Перейти к окну регистрации</Link>
+                </div>
             </Form>
         </Container>
         </Card>

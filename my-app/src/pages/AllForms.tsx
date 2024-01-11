@@ -111,8 +111,7 @@ const AllForms = () => {
                                             <Button
                                                 variant='outline-secondary'
                                                 size='sm'
-                                                className='align-self-center'
-                                            >
+                                                className='gradient-button1 text-decoration-none w-100' >
                                                 Подробнее
                                             </Button>
                                         </Link>

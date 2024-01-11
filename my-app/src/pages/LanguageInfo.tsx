@@ -42,16 +42,16 @@ const LanguageInfo: FC = () => {
                     </Navbar>
                     <Card className='shadow-lg text-center text-md-start'>
                         <Row>
-                            <div className='col-12 col-md-8 overflow-hidden'>
+                            <div className='col-10 col-md-8 overflow-hidden'>
                                 <CardImage url={language.image_url} />
                             </div>
                             <Card.Body className='col-12 col-md-4 ps-md-0'>
                                 <ListGroup variant="flush">
-                                    <ListGroup.Item>
-                                        <Card.Title>{language.name}</Card.Title>
-                                        <Card.Text>Предмет: {language.subject}</Card.Text>
+                                    <ListGroup.Item className="card">
+                                        <Card.Title className="bold-title">{language.name}</Card.Title>
+                                        <Card.Text className="lower-and-larger-text">Предмет: {language.subject}</Card.Text>
                                         <Card.Text>Задание: {language.task}</Card.Text>
-                                        <Card.Text>Описание задания: {language.description} мм</Card.Text>
+                                        <Card.Text>Описание задания: {language.description}</Card.Text>
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>

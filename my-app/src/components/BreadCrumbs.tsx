@@ -18,8 +18,7 @@ function Breadcrumbs() {
                         <>
                             <Link
                                 to={page.path}
-                                className="nav-link p-0 text-dark"
-                                data-bs-theme="dark"
+                                className="nav-link p-0"
                                 onClick={() => dispatch(cutHistory(index))}
                             >
                                 {page.name}

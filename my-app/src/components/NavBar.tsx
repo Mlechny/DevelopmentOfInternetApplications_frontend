@@ -42,10 +42,10 @@ function NavigationBar() {
                                     <Navbar.Text className="px-2">
                                         {userLogin}
                                     </Navbar.Text>
-                                    <Navbar.Text className="d-none d-sm-block">|</Navbar.Text>
+                                    <Navbar.Text className="d-none d-sm-block" style={{ fontSize: 'larger', marginRight: '10px' }}>|</Navbar.Text>
                                     <Button
                                         variant="link"
-                                        className="nav-link"
+                                        className="nav-link stretched-btn no-hover"
                                         onClick={logout}>
                                         Выйти
                                     </Button>

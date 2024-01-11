@@ -21,7 +21,7 @@ const FormInfo = () => {
     const [loaded, setLoaded] = useState(false)
     const dispatch = useDispatch<AppDispatch>();
     const location = useLocation().pathname;
-    const [edit, setEdit] = useState(false)
+    const [edit, setEdit] = useState(true)
     const [comments, setComments] = useState<string>('')
     const navigate = useNavigate()
 
@@ -60,7 +60,8 @@ const FormInfo = () => {
                     'Content-Type': 'application/json',
                 }
             })
-            .then(() => getData())
+            .then(() => {getData();
+            setEdit(false);})
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
@@ -146,16 +147,19 @@ const FormInfo = () => {
                                         value={comments}
                                         onChange={(e) => setComments(e.target.value)}
                                     />
-                                    {!edit && form.status === 'черновик' && <Button onClick={() => setEdit(true)}>Изменить</Button>}
-                                    {edit && <Button variant='success' onClick={update}>Сохранить</Button>}
-                                    {edit && <Button
-                                        variant='danger'
-                                        onClick={() => {
-                                            setComments(form.comments ? form.comments : '');
-                                            setEdit(false)
-                                        }}>
-                                        Отменить
-                                    </Button>}
+                                    {form.status === 'черновик' && edit && (
+                                <ButtonGroup>
+                            <Button onClick={update}>Сохранить</Button>
+                            <Button
+                                className='gradient-button'
+                                onClick={() => {
+                                setComments(form.comments ? form.comments : '');
+                                setEdit(false);
+                             }}>
+                            Отменить
+                            </Button>
+                                </ButtonGroup>
+                                    )}
                                 </InputGroup>
                                 {form.status != 'черновик' &&
                                     <InputGroup className='mb-1'>
@@ -164,8 +168,8 @@ const FormInfo = () => {
                                     </InputGroup>}
                                 {form.status == 'черновик' &&
                                     <ButtonGroup className='flex-grow-1 w-100'>
-                                        <Button variant='primary' onClick={confirm}>Сформировать</Button>
-                                        <Button variant='danger' onClick={deleteN}>Удалить</Button>
+                                        <Button  onClick={confirm}>Сформировать</Button>
+                                        <Button className='gradient-button' onClick={deleteN}>Удалить</Button>
                                     </ButtonGroup>}
                             </Card.Body>
                         </Card>
@@ -175,8 +179,7 @@ const FormInfo = () => {
                                     <SmallCCard  {...language}>
                                         {form.status == 'черновик' &&
                                             <Button
-                                                variant='outline-danger'
-                                                className='mt-0 rounded-bottom'
+                                                className='gradient-button mt-0 rounded-bottom'
                                                 onClick={delFromForm(language.uuid)}>
                                                 Удалить
                                             </Button>}
