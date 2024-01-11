@@ -95,6 +95,7 @@ const LanguageInfo: FC = () => {
         } else {
             axiosAPI.put(`/languages/${language?.uuid}`, formData, { headers: { 'Authorization': `Bearer ${accessToken}`, } })
                 .then(() => getLanguage(language_id).then((data) => setLanguage(data)))
+                console.log(formData)
         }
     }
 
@@ -123,7 +124,7 @@ const LanguageInfo: FC = () => {
                     <Card className='card shadow-lg mb-3'>
                         <Row className='m-0'>
                             <Col className='col-12 col-md-8 overflow-hidden p-0'>
-                                <CardImage url={language.image_url} />
+                            <CardImage key={language.image_url} url={`${language.image_url}?${new Date().getTime()}`} />
                             </Col>
                             <Col className='d-flex flex-column col-12 col-md-4 p-0'>
                             <Form noValidate validated={edit} onSubmit={save}>

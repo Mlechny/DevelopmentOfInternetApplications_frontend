@@ -17,10 +17,15 @@ const CardImage = ({ url, className, ...props }: CardImageProps) => {
         }
 
         // Добавление протокола http://, если отсутствует
-        const fullUrl = url.startsWith('http://') || url.startsWith('https://') ? url : `http://${url}`;
+        const fullUrl = new URL(url.startsWith('http://') || url.startsWith('https://') ? url : `http://${url}`);
+        fullUrl.searchParams.set('timestamp', new Date().getTime().toString());
+        const fullUrlString = fullUrl.toString();
 
-        axios.get(fullUrl, { responseType: 'blob' })
+        axios.get(fullUrlString, { responseType: 'blob' })
             .then(response => {
+                if (src !== imagePlaceholder && src !== url) {
+                    URL.revokeObjectURL(src);
+                }
                 setSrc(URL.createObjectURL(response.data));
             })
             .catch(error => {
