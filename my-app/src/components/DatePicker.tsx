@@ -28,12 +28,16 @@ const DateTimePicker: FC<DatePickerProps> = ({ selected, onChange }) => {
 
     return (
         <DatePicker
-            selected={selected}
-            onChange={onChange}
-            isClearable
-            dateFormat="MM.d.yyyy"
-            customInput={<CustomInput />}
-            className="form-control-sm flex-grow-1 custom-search-input"
+        selected={selected}
+        onChange={onChange}
+        // showTimeSelect
+        timeFormat="HH:mm"
+        timeIntervals={60}
+        isClearable
+        timeCaption="Время"
+        dateFormat="MM.d.yyyy"
+        customInput={<CustomInput />}
+        className="form-control-sm flex-grow-1 custom-search-input"
         />
     );
 }

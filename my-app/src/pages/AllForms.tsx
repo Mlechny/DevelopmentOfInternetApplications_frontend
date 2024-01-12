@@ -14,7 +14,6 @@ import { clearHistory, addToHistory } from "../store/historySlice";
 import LoadAnimation from '../components/LoadAnimation';
 import { MODERATOR } from '../components/AuthCheck'
 import DateTimePicker from '../components/DatePicker';
-import { format } from 'date-fns';
 
 const AllForms = () => {
     const [forms, setForms] = useState<IForm[]>([])
@@ -28,11 +27,11 @@ const AllForms = () => {
     const [loaded, setLoaded] = useState(false)
 
     const getData = () => {
-        setLoaded(false)
         getForms(userFilter, statusFilter, startDate, endDate)
         .then((data) => {
             setLoaded(true);
             setForms(data)
+            console.log(data)
         })
     };
 
@@ -82,11 +81,11 @@ const AllForms = () => {
                     </InputGroup>
                     <DateTimePicker
                         selected={startDate ? new Date(startDate) : null}
-                        onChange={(date: Date) => dispatch(setDateStart(date ? format(date, 'yyyy-MM-dd HH:mm:ss') : null))}
+                        onChange={(date: Date) => dispatch(setDateStart(date ? date.toISOString() : null))}
                     />
                     <DateTimePicker
                         selected={endDate ? new Date(endDate) : null}
-                        onChange={(date: Date) => dispatch(setDateEnd(date ? format(date, 'yyyy-MM-dd HH:mm:ss') : null))}
+                        onChange={(date: Date) => dispatch(setDateEnd(date ? date.toISOString() : null))}
                     />
                     <Button
                         variant="primary"

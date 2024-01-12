@@ -35,10 +35,10 @@ export async function getForms(
             params: {
                 ...(status && { status: status }),
                 ...(startDate && {
-                    formation_date_start: format(new Date(startDate), 'yyyy-MM-dd HH:mm:ss'),
+                    formation_date_start: format(new Date(startDate), 'yyyy-MM-dd HH:mm'),
                 }),
                 ...(endDate && {
-                    formation_date_end: format(new Date(endDate), 'yyyy-MM-dd HH:mm:ss'),
+                    formation_date_end: format(new Date(endDate), 'yyyy-MM-dd HH:mm'),
                 }),
             },
             headers: {
