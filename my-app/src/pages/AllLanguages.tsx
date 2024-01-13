@@ -23,25 +23,24 @@ const Search: FC<ISearchProps> = ({ setLanguages }) => {
             })
     }
     return (
-        <Navbar>
-            <Form className="d-flex flex-row flex grow-1 gap-2" onSubmit={handleSearch}>
-                <Form.Control
-                    type="text"
-                    placeholder="Поиск"
-                    className="form-control-sm flex-grow-1 shadow shadow-sm"
-                    data-bs-theme="primary"
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                />
-                 <Button
-                    variant="primary"
-                    size="sm"
-                    type="submit"
-                    className="shadow">
-                    Поиск
-                </Button>
-            </Form>
-        </Navbar>)
+        <Navbar> 
+        <Form className="d-flex flex-row flex-grow-1 gap-2" onSubmit={handleSearch}>
+            <Form.Control
+                name="text"
+                placeholder="Поиск"
+                className="form-control-sm flex-grow-1 custom-search-input"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+            />
+            <Button
+                size="sm"
+                type="submit"
+                className="shadow-lg button0">
+                Поиск
+            </Button>
+        </Form>
+    </Navbar>
+    )
 }
 
 const AllLanguages = () => {
@@ -64,13 +63,13 @@ const AllLanguages = () => {
         <>
             <Search  setLanguages={setLanguages} />
             <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 px-1'>
-            {loaded ? (
+                {loaded ? (
                     languages.map((language) => (
-                    <div className='d-flex py-1 p-2 justify-content-center' key={language.uuid}>
-                        <SmallRCard {...language} />
-                    </div>
-                ))
-                ) : (
+                        <div className='d-flex py-1 p-2 justify-content-center' key={language.uuid}>
+                            <SmallRCard {...language} />
+                        </div>
+                    ))
+                )  : (
                     <LoadAnimation />
                 )}   
         </div>

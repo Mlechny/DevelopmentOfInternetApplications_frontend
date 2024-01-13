@@ -28,11 +28,11 @@ const LanguageInfo: FC = () => {
         <>
         <Navbar>
                 <Nav>
-                <Link to="/languages" className="nav-link p-0 text-dark" data-bs-theme="dark">
+                <Link to="/languages" className="nav-link p-0">
                     Языки программирования
                 </Link>
                 <Nav.Item className='mx-1'>{">"}</Nav.Item>
-                <Nav.Item className="nav-link p-0 text-dark">
+                <Nav.Item className="nav-link p-0">
                     {`${language ? language.name : 'неизвестно'}`}
                 </Nav.Item>
                 </Nav>

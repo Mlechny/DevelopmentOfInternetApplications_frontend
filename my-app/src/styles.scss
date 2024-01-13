@@ -1,0 +1,155 @@
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
+
+// Import all of Bootstrap's CSS
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/react-datepicker/dist/react-datepicker.css";
+
+.t-input-group-text, .c-input-group-text {
+    border: 2px solid rgba(255, 255, 255, 0.125);
+    background-color: rgba(194, 32, 191, 0.03);
+    color: white;
+}
+
+.t-input-group-text {
+    width: 140px; // немного уменьшенная ширина
+}
+
+.c-input-group-text {
+    width: 110px; // немного уменьшенная ширина
+}
+
+.gradient-button {
+    background: linear-gradient(135deg, #69b5c1, #433184); /* Градиент от светло-фиолетового к темно-фиолетовому */
+    color: white; /* Белый цвет текста для контраста */
+    border: none; /* Без границ */
+    padding: 10px 15px; /* Отступы вокруг текста */
+    border-radius: 8px; /* Скругленные углы */
+    font-size: 16px; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Плавные переходы для эффектов наведения и нажатия */
+}
+
+.gradient-button:hover {
+    background: linear-gradient(135deg, #37708e, rgb(100, 65, 141)); /* Изменение градиента при наведении */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Тень при наведении */
+}
+
+body {
+    background-color: #252582; /* Темно-фиолетовый фон */
+    color: white; /* Белый текст */
+    font-family: 'Arial', sans-serif; /* Шрифт */
+}
+
+/* Стили для формы и кнопок */
+.form-control {
+    background-color: #3c3ccd; /* Светло-фиолетовый фон для полей ввода */
+    color: white; /* Белый текст */
+    border: none;
+}
+
+.button0, .btn0 {
+    background-color: #181893 !important; /* Фиолетовая кнопка */
+    color: white !important; /* Белый текст */
+}
+
+.button:hover, .btn:hover {
+    background-color: #5c5caa !important; /* Светлее при наведении */
+}
+
+.custom-link-btn {
+    background-color: #1e7cbf !important; /* Example: Orange background */
+    color: #ffffff !important; /* Example: Black text */
+    font-size: 1.1rem !important;
+}
+
+.custom-link-btn:hover {
+    background-color: #40a1a6 !important; /* Example: Lighter orange on hover */
+}
+
+/* Стиль для карточек */
+.card{
+    background-color: #6f42c1 !important; /* Светло-фиолетовый фон */
+    color: white !important; /* Белый текст */
+}
+
+.custom-table{
+    background-color: #6f42c1; 
+}
+
+.white-text{
+    color: white
+}
+
+.custom-search-input {
+    background-color: #ddd; /* Светло-серый фон */
+    color: #333; /* Темный цвет текста */
+    border: 1px solid #ccc; /* Светло-серая граница */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Слегка заметная тень */
+}
+
+.gradient-button1 {
+    background: linear-gradient(135deg, #b8547c, #ab54c1); /* Градиент от светло-розового к темно-розовому */
+    color: white; /* Белый цвет текста для контраста */
+    border: 1px solid #bb519e; /* Розовая граница */
+    padding: .375rem .75rem; /* Отступы */
+    border-radius: .25rem; /* Скругление углов */
+    font-size: 1rem; /* Размер шрифта */
+    line-height: 1.5; /* Высота линии */
+    transition: background-color .3s, box-shadow .3s; /* Плавные переходы для эффектов наведения и нажатия */
+    box-shadow: 0 2px 4px #0000001a; /* Начальная тень */
+    text-align: center; /* Выравнивание текста */
+}
+
+.gradient-button1:hover {
+    background: linear-gradient(135deg, #b84692, #e773a2); /* Изменение градиента при наведении */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Усиленная тень при наведении */
+    border-color: #a73a8b; /* Потемневшая граница при наведении */
+}
+
+.custom-navbar {
+    background-color: #6f42c1; /* фиолетовый */
+    border-bottom: 1px solid #5936ac; /* темно-фиолетовый для нижней границы */
+}
+
+/* Измените цвет ссылок, если нужно */
+.nav-link {
+    color: #ffffff; /* белый цвет текста для контраста */
+}
+
+/* Измените цвет ссылок при наведении, если нужно */
+.nav-link:hover {
+    color: #ddd; /* светло-серый для наведения */
+}
+
+.stretched-btn {
+    display: block; /* элемент блочного уровня */
+    width: 10%; /* ширина элемента занимает 100% родительского элемента */
+    padding: 0.25rem 0.5rem; /* меньше отступов */
+    font-size: 0.875rem; /* уменьшенный размер шрифта */
+}
+
+table, .table th, .table td {
+    background-color: #6f42c1; /* Фиолетовый фон */
+}
+
+.table th,
+.table td,
+.table a, 
+.table button
+{
+    color: white; /* Белый текст */
+}
+
+.bold-title {
+    font-weight: bold;
+}
+
+.lower-and-larger-text {
+    margin-top: 10px;
+    font-size: larger;
+}
